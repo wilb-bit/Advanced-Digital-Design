@@ -1,0 +1,31 @@
+module shiftregfinal ();
+
+input dataEn;
+input shiftEn;
+input reset_n;
+input [15:0] data;
+
+output [15:0] shiftData;
+output MSB;
+
+always(posedge(shiftEn), posedge(dataEN), negedge(reset_n)
+	begin
+		if(reset_n == 1'b0)
+			begin
+				shiftData [15:0] <= 0;
+			end
+		else if(dataEn == 1'b1)
+			begin
+				shiftData <= data;
+			end
+		else if (shiftEN == 1'b1)
+			begin
+				shiftData <= shiftData << 1'b1;
+			end
+		else
+		shiftData = shiftData;
+	end
+
+assign MSB = shiftData[15];
+
+endmodule
